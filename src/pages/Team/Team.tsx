@@ -11,8 +11,7 @@ import { TeamModel } from "../../models/team.model";
 import _ from "lodash";
 import { Match } from "../../models/match.model";
 import { CardMatch } from "../../components/CardMatch/CardMatch";
-import { useEffect, useMemo, useState } from "react";
-import { queryClient } from "../../services/queryClient";
+import { useEffect, useState } from "react";
 
 export function Team() {
 	let navigate = useNavigate();
@@ -20,7 +19,7 @@ export function Team() {
 
 	const [competitionId, setCompetitionId] = useState(id);
 
-	const { data, isFetching, error } = useQuery(
+	const { data, isFetching, error, refetch } = useQuery(
 		"team",
 		async () => {
 			const dateFrom = moment().format("YYYY-MM-DD");
@@ -42,6 +41,14 @@ export function Team() {
 			refetchOnWindowFocus: false,
 		}
 	);
+
+	useEffect(() => {
+		setCompetitionId(id);
+	}, [id]);
+
+	useEffect(() => {
+		refetch();
+	}, [competitionId]);
 
 	function handleClickBack() {
 		navigate("/", { replace: true });

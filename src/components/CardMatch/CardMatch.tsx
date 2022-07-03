@@ -53,6 +53,7 @@ export function CardMatch({ match, displayCompetitionName }: Props) {
 							currentTarget.onerror = null;
 							currentTarget.src = ShiledIconPlaceholder;
 						}}
+						alt={match.homeTeam.name}
 					></TeamShield>
 					<TeamName to={"/teams/" + match.homeTeam.id}>
 						{match.homeTeam.name}
@@ -72,6 +73,7 @@ export function CardMatch({ match, displayCompetitionName }: Props) {
 							currentTarget.onerror = null;
 							currentTarget.src = ShiledIconPlaceholder;
 						}}
+						alt={match.awayTeam.name}
 					></TeamShield>
 					<TeamName to={"/teams/" + match.awayTeam.id}>
 						{match.awayTeam.name}
