@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { PageHeader, Spin, Divider, Row, Col } from "antd";
+import { PageHeader, Spin, Divider, Row, Col, Result } from "antd";
 import { useNavigate } from "react-router-dom";
 import { SpinContainer, TitleSection } from "./TeamStyle";
 import { SquadTeam } from "./Components/SquadTeam/SquadTeam";
@@ -61,6 +61,15 @@ export function Team() {
 			</SpinContainer>
 		);
 	}
+
+	if (error) {
+		<Result
+			status="500"
+			title="OPS"
+			subTitle="Sorry, something went wrong."
+		/>;
+	}
+    
 	return (
 		<>
 			<section>

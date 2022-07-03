@@ -1,4 +1,4 @@
-import { PageHeader, Spin, Row, Col } from "antd";
+import { PageHeader, Spin, Row, Col, Result } from "antd";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { CompetitionModel } from "../../models/competition.model";
@@ -43,6 +43,14 @@ export function Competition() {
 				<Spin size="large" />
 			</SpinContainer>
 		);
+	}
+
+	if (error) {
+		<Result
+			status="500"
+			title="OPS"
+			subTitle="Sorry, something went wrong."
+		/>;
 	}
 
 	return (
