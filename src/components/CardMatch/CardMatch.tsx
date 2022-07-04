@@ -48,7 +48,10 @@ export function CardMatch({ match, displayCompetitionName }: Props) {
 			<TeamContainer>
 				<div>
 					<TeamShield
-						src={`https://crests.football-data.org/${match.homeTeam.id}.png`}
+						src={
+							`https://crests.football-data.org/${match.homeTeam.id}.png` ||
+							`https://crests.football-data.org/${match.homeTeam.id}.svg`
+						}
 						onError={({ currentTarget }) => {
 							currentTarget.onerror = null;
 							currentTarget.src = ShiledIconPlaceholder;

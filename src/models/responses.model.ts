@@ -1,4 +1,7 @@
 import { Match } from "./match.model";
+import { Scorers } from "./scorers.model";
+import { Standings } from "./standings.model";
+import { CompetitionMatch } from "./team.model";
 
 export type MatchesResponse = {
 	count: number;
@@ -30,4 +33,20 @@ export type CompetitionStanndingsResponse = {
 		stages: string[];
 	};
 	standings: Standings[];
+};
+
+interface Season {
+	currentMatchday: number;
+	endDate: string;
+	id: number;
+	startDate: string;
+	winner: string;
+}
+
+export type TopScorersResponse = {
+	competition: CompetitionMatch;
+	count: number;
+	filters: Object;
+	scorers: Scorers[];
+	season: Season;
 };

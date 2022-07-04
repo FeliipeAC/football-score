@@ -16,3 +16,8 @@ export const TitleSection = styled.h2`
 	font-size: 1.3rem;
 	margin: 24px 0;
 `;
+
+export const ContainerGols = styled.div`
+	font-size: 1.3rem;
+	font-weight: 500;
+`;

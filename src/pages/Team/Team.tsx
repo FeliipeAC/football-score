@@ -17,7 +17,7 @@ export function Team() {
 	let navigate = useNavigate();
 	let { id } = useParams();
 
-	const [competitionId, setCompetitionId] = useState(id);
+	const [teamId, setteamId] = useState(id);
 
 	const { data, isFetching, error, refetch } = useQuery(
 		"team",
@@ -28,11 +28,11 @@ export function Team() {
 
 			const matchesTeam = (
 				await FootballDataService(
-					`teams/${competitionId}/matches${queryParams}`
+					`teams/${teamId}/matches${queryParams}`
 				)
 			).data.matches as Match[];
 
-			const team = (await FootballDataService(`teams/${competitionId}`))
+			const team = (await FootballDataService(`teams/${teamId}`))
 				.data as TeamModel;
 			return { matchesTeam, team };
 		},
@@ -43,12 +43,12 @@ export function Team() {
 	);
 
 	useEffect(() => {
-		setCompetitionId(id);
+		setteamId(id);
 	}, [id]);
 
 	useEffect(() => {
 		refetch();
-	}, [competitionId]);
+	}, [teamId]);
 
 	function handleClickBack() {
 		navigate("/", { replace: true });
@@ -69,7 +69,7 @@ export function Team() {
 			subTitle="Sorry, something went wrong."
 		/>;
 	}
-    
+
 	return (
 		<>
 			<section>

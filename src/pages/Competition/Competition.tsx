@@ -1,13 +1,22 @@
-import { PageHeader, Spin, Row, Col, Result } from "antd";
+import { PageHeader, Spin, Row, Col, Result, Tabs, List } from "antd";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { CompetitionModel } from "../../models/competition.model";
-import { CompetitionStanndingsResponse } from "../../models/responses.model";
+import {
+	CompetitionStanndingsResponse,
+	TopScorersResponse,
+} from "../../models/responses.model";
 import { FootballDataService } from "../../services/FootballData";
 import { SpinContainer } from "../Team/TeamStyle";
-import { ContainerTable, TitleSection } from "./CompetitionStyle";
+import {
+	ContainerGols,
+	ContainerTable,
+	TitleSection,
+} from "./CompetitionStyle";
 import { CompetitionMatchesDay } from "./components/CompetitionMatchesDay";
 import { StandingsTable } from "./components/StandingsTable";
+
+const { TabPane } = Tabs;
 
 export function Competition() {
 	let navigate = useNavigate();
@@ -25,7 +34,13 @@ export function Competition() {
 					.data as CompetitionStanndingsResponse
 			).standings;
 
-			return { competition, competitionStanndings };
+			const topScorers = (
+				(await FootballDataService(`competitions/${id}/scorers`))
+					.data as TopScorersResponse
+			).scorers;
+			console.log("topScorers: ", topScorers);
+
+			return { competition, competitionStanndings, topScorers };
 		},
 		{
 			// refetchInterval: 1000 * 15,
@@ -104,14 +119,38 @@ export function Competition() {
 							lg={8}
 							span={8}
 						>
-							<TitleSection>Matches</TitleSection>
-							<CompetitionMatchesDay
-								competitionId={data.competition.id}
-								currentMatchday={
-									data.competition.currentSeason
-										.currentMatchday
-								}
-							/>
+							<Tabs type="card">
+								<TabPane tab="Matches" key="1">
+									{/* <TitleSection>Matches</TitleSection> */}
+									<CompetitionMatchesDay
+										competitionId={data.competition.id}
+										currentMatchday={
+											data.competition.currentSeason
+												.currentMatchday
+										}
+									/>
+								</TabPane>
+								<TabPane tab="Top Scorers" key="2">
+									<List
+										dataSource={data?.topScorers}
+										renderItem={(item) => (
+											<List.Item key={item.player.id}>
+												<List.Item.Meta
+													title={
+														<a href="https://ant.design">
+															{item.player.name}
+														</a>
+													}
+													description={`${item.team.name} (${item.player.position})`}
+												/>
+												<ContainerGols>
+													{item.numberOfGoals}
+												</ContainerGols>
+											</List.Item>
+										)}
+									/>
+								</TabPane>
+							</Tabs>
 						</Col>
 					</Row>
 				</div>
