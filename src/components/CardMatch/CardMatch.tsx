@@ -14,6 +14,7 @@ import {
 import moment from "moment";
 
 import ShiledIconPlaceholder from "../../assets/images/shield_icon.png";
+import { Divider } from "antd";
 
 type Props = {
 	match: Match;
@@ -36,6 +37,11 @@ export function CardMatch({ match, displayCompetitionName }: Props) {
 						</>
 					)}
 					<Date>
+						{match.stage.replaceAll("_", " ")}{" "}
+						{(match.stage === "REGULAR_SEASON" ||
+							match.stage === "GROUP_STAGE") &&
+							`(round ${match.season.currentMatchday})`}
+						<Divider type="vertical" />
 						{moment(match.utcDate).format("DD/MM/YYYY HH:mm")}
 					</Date>
 				</div>

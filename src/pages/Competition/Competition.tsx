@@ -38,7 +38,6 @@ export function Competition() {
 				(await FootballDataService(`competitions/${id}/scorers`))
 					.data as TopScorersResponse
 			).scorers;
-			console.log("topScorers: ", topScorers);
 
 			return { competition, competitionStanndings, topScorers };
 		},
