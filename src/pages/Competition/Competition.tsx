@@ -81,7 +81,7 @@ export function Competition() {
 							shape: "square",
 						}}
 					/>
-					<Row gutter={32}>
+					<Row gutter={[32, 32]}>
 						<Col className="gutter-row" lg={16} sm={16} span={16}>
 							<TitleSection>Standings</TitleSection>
 							{data.competitionStanndings &&
