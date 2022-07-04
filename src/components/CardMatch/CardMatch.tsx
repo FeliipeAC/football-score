@@ -45,10 +45,11 @@ export function CardMatch({ match, displayCompetitionName }: Props) {
 						{moment(match.utcDate).format("DD/MM/YYYY HH:mm")}
 					</Date>
 				</div>
-				{match.status === StatusMatch.LIVE ||
-					(match.status === StatusMatch["IN PLAY"] && (
-						<Live>Live</Live>
-					))}
+				{(match.status === StatusMatch.LIVE ||
+					match.status === StatusMatch.PAUSED ||
+					match.status === StatusMatch["IN PLAY"]) && (
+					<Live>Live</Live>
+				)}
 			</InfoMatchContainer>
 
 			<TeamContainer>
