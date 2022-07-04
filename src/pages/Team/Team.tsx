@@ -107,7 +107,6 @@ export function Team() {
 							})}
 						</Row>
 						<Divider />
-						<InfoTeam team={data.team} />
 						{data.team.squad && (
 							<div>
 								<TitleSection>Squad</TitleSection>
