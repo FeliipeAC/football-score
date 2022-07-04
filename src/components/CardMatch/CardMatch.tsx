@@ -54,13 +54,14 @@ export function CardMatch({ match, displayCompetitionName }: Props) {
 			<TeamContainer>
 				<div>
 					<TeamShield
-						src={
-							`https://crests.football-data.org/${match.homeTeam.id}.png` ||
-							`https://crests.football-data.org/${match.homeTeam.id}.svg`
-						}
+						src={`https://crests.football-data.org/${match.homeTeam.id}.png`}
 						onError={({ currentTarget }) => {
 							currentTarget.onerror = null;
-							currentTarget.src = ShiledIconPlaceholder;
+							if (currentTarget.src.includes(".png")) {
+								currentTarget.src = `https://crests.football-data.org/${match.homeTeam.id}.svg`;
+							} else {
+								currentTarget.src = ShiledIconPlaceholder;
+							}
 						}}
 						alt={match.homeTeam.name}
 					></TeamShield>
@@ -80,7 +81,11 @@ export function CardMatch({ match, displayCompetitionName }: Props) {
 						src={`https://crests.football-data.org/${match.awayTeam.id}.png`}
 						onError={({ currentTarget }) => {
 							currentTarget.onerror = null;
-							currentTarget.src = ShiledIconPlaceholder;
+							if (currentTarget.src.includes(".png")) {
+								currentTarget.src = `https://crests.football-data.org/${match.awayTeam.id}.svg`;
+							} else {
+								currentTarget.src = ShiledIconPlaceholder;
+							}
 						}}
 						alt={match.awayTeam.name}
 					></TeamShield>
