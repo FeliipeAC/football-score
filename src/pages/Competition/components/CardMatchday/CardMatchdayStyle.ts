@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const CardMatchDayContainer = styled.div`
@@ -39,4 +40,8 @@ export const InfoMatch = styled.div`
 	text-align: center;
 	margin-bottom: 4px;
 	font-weight: 500;
+`;
+
+export const TeamLink = styled(Link)`
+	margin: 0;
 `;

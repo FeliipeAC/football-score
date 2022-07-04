@@ -6,6 +6,7 @@ import {
 	InfoMatch,
 	Score,
 	ScoreContainer,
+	TeamLink,
 } from "./CardMatchdayStyle";
 
 export function CardMatchDay({ matchday }: { matchday: Match }) {
@@ -17,11 +18,13 @@ export function CardMatchDay({ matchday }: { matchday: Match }) {
 				</InfoMatch>
 				<ScoreContainer>
 					<Popover content={matchday.homeTeam.name} trigger="hover">
-						<Avatar
-							shape="square"
-							size="default"
-							src={`https://crests.football-data.org/${matchday.homeTeam.id}.png`}
-						/>
+						<TeamLink to={`/teams/${matchday.homeTeam.id}`}>
+							<Avatar
+								shape="square"
+								size="default"
+								src={`https://crests.football-data.org/${matchday.homeTeam.id}.png`}
+							/>
+						</TeamLink>
 					</Popover>
 					<Score>
 						{matchday.score.fullTime.homeTeam}
@@ -29,11 +32,13 @@ export function CardMatchDay({ matchday }: { matchday: Match }) {
 						{matchday.score.fullTime.awayTeam}
 					</Score>
 					<Popover content={matchday.awayTeam.name} trigger="hover">
-						<Avatar
-							shape="square"
-							size="default"
-							src={`https://crests.football-data.org/${matchday.awayTeam.id}.png`}
-						/>
+						<TeamLink to={`/teams/${matchday.awayTeam.id}`}>
+							<Avatar
+								shape="square"
+								size="default"
+								src={`https://crests.football-data.org/${matchday.awayTeam.id}.png`}
+							/>
+						</TeamLink>
 					</Popover>
 				</ScoreContainer>
 			</CardMatchDayContainer>

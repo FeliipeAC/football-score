@@ -72,11 +72,7 @@ export const Competition = styled(Link)`
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	text-decoration: none;
-    align-self: flex-start;
-
-	&:hover {
-		color: ${(props) => props.theme.shadowBlue};
-	}
+	align-self: flex-start;
 `;
 
 export const Score = styled.span`
@@ -106,10 +102,6 @@ export const LinkDetails = styled(Link)`
 	background-color: ${(props) => props.theme.richBlackFogra29};
 	padding: 6px 16px;
 	border-radius: 4px;
-
-	&:hover {
-		color: #fff;
-	}
 `;
 
 export const Live = styled.span`
