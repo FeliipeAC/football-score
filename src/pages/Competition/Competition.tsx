@@ -48,7 +48,8 @@ export function Competition() {
 	);
 
 	function handleClickBack() {
-		navigate("/", { replace: true });
+		navigate(-1);
+		// navigate("/", { replace: true });
 	}
 
 	if (isFetching) {

@@ -1,6 +1,5 @@
-import { useParams } from "react-router-dom";
 import { PageHeader, Spin, Divider, Row, Col, Result } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { SpinContainer, TitleSection } from "./TeamStyle";
 import { SquadTeam } from "./Components/SquadTeam/SquadTeam";
 import { InfoTeam } from "./Components/InfoTeam/InfoTeam";
@@ -15,6 +14,7 @@ import { useEffect, useState } from "react";
 
 export function Team() {
 	let navigate = useNavigate();
+	let location = useLocation();
 	let { id } = useParams();
 
 	const [teamId, setteamId] = useState(id);
@@ -51,7 +51,8 @@ export function Team() {
 	}, [teamId]);
 
 	function handleClickBack() {
-		navigate("/", { replace: true });
+		navigate(-1);
+		// navigate("/", { replace: true });
 	}
 
 	if (isFetching) {
